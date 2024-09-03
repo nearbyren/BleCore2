@@ -57,7 +57,6 @@
 
     <Button
             android:id="@+id/btnReadData"
-        tools:visibility="visible"
             android:layout_width="70dp"
             android:layout_height="40dp"
             android:layout_marginEnd="10dp"
@@ -77,13 +76,11 @@
             android:textColor="@color/black"
             android:textSize="14sp"
             android:visibility="gone"
-            tools:visibility="visible"
             android:layout_marginEnd="10dp"
             android:checked="false"/>
 
     <CheckBox
             android:id="@+id/cbNotify"
-        tools:visibility="visible"
             android:layout_width="wrap_content"
             android:layout_height="40dp"
             android:text="Notify"
@@ -97,7 +94,6 @@
             android:id="@+id/cbIndicate"
             android:layout_width="wrap_content"
             android:layout_height="40dp"
-        tools:visibility="visible"
             android:text="Indicate"
             android:textColor="@color/black"
             android:textSize="14sp"

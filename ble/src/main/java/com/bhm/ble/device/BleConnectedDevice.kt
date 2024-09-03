@@ -132,6 +132,8 @@ internal class BleConnectedDevice(val bleDevice: BleDevice) : BluetoothGattCallb
         characteristic: BluetoothGattCharacteristic,
         value: ByteArray
     ) {
+        println("测试 to HEX:${bytesToHexString(characteristic!!.value)},to STR:${String(characteristic!!.value)}")
+
         /*android 13调用的方法*/
 //        super.onCharacteristicChanged(gatt, characteristic, value)
         val properties = characteristic.properties
@@ -146,6 +148,21 @@ internal class BleConnectedDevice(val bleDevice: BleDevice) : BluetoothGattCallb
         }
     }
 
+    fun bytesToHexString(src: ByteArray?): String? {
+        val stringBuilder = StringBuilder("")
+        if (src == null || src.size <= 0) {
+            return null
+        }
+        for (i in src.indices) {
+            val v = src[i].toInt() and 0xFF
+            val hv = Integer.toHexString(v)
+            if (hv.length < 2) {
+                stringBuilder.append(0)
+            }
+            stringBuilder.append(hv)
+        }
+        return stringBuilder.toString()
+    }
     @Suppress("DEPRECATION", "OVERRIDE_DEPRECATION")
     override fun onCharacteristicChanged(
         gatt: BluetoothGatt?,
@@ -156,6 +173,7 @@ internal class BleConnectedDevice(val bleDevice: BleDevice) : BluetoothGattCallb
 //        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
 //            return
 //        }
+        println("测试 to HEX:${bytesToHexString(characteristic!!.value)},to STR:${String(characteristic!!.value)}")
         characteristic?.let {
             val properties = characteristic.properties
             if (properties and BluetoothGattCharacteristic.PROPERTY_INDICATE != 0) {

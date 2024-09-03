@@ -41,7 +41,10 @@ internal open class BleTaskQueueRequest(
 
     fun getTaskQueue(uuid: String): BleTaskQueue? {
         return when (bleTaskQueueType) {
-            BleTaskQueueType.Default -> BleConnectedDeviceManager.get().getBleConnectedDevice(bleDevice)?.getShareBleTaskQueue()
+            BleTaskQueueType.Default ->
+                BleConnectedDeviceManager.get()
+                    .getBleConnectedDevice(bleDevice)
+                    ?.getShareBleTaskQueue()
             BleTaskQueueType.Operate -> operateBleTaskQueue
             BleTaskQueueType.Independent -> {
                 if (bleTaskQueueHashMap?.containsKey(uuid) == true) {

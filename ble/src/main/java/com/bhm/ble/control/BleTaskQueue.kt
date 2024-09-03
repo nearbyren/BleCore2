@@ -64,11 +64,9 @@ internal class BleTaskQueue(private val tag: String = "") {
             BleLogger.i("($tag) 开始执行任务：$task")
             task.doTask()
             if (task.completed() == UN_COMPLETE) {
-                BleLogger.i("($tag) 开始执行任务：$task,$UN_COMPLETE")
                 task.setCompleted(COMPLETED)
                 task.callback?.invoke(task, CompleteException())
             } else if (task.completed() == CANCEL_UN_COMPLETE) {
-                BleLogger.i("($tag) 开始执行任务：$task,$CANCEL_UN_COMPLETE")
                 task.callback?.invoke(task, CancelException())
             }
             task.canceled.set(true)

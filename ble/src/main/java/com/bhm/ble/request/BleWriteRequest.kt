@@ -212,7 +212,10 @@ internal class BleWriteRequest(
 
         val characteristic = getCharacteristic(serviceUUID, writeUUID)
 
-        if (characteristic != null && (characteristic.properties and BluetoothGattCharacteristic.PROPERTY_WRITE != 0 || characteristic.properties and BluetoothGattCharacteristic.PROPERTY_WRITE_NO_RESPONSE != 0)) {
+        if (characteristic != null &&
+            (characteristic.properties and BluetoothGattCharacteristic.PROPERTY_WRITE != 0 ||
+                    characteristic.properties and BluetoothGattCharacteristic.PROPERTY_WRITE_NO_RESPONSE != 0)
+        ) {
             //循环数据包，生成对应的任务
             for (i in 0 until dataArray.size()) {
                 val bleWriteData = BleWriteData(
